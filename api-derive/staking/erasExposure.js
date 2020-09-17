@@ -47,7 +47,7 @@ function _eraExposure(instanceId, api) {
   return (0, _util.memo)(instanceId, (era, withActive) => {
     const cacheKey = `${CACHE_KEY}-${era.toString()}`;
     const cached = withActive ? undefined : _util.deriveCache.get(cacheKey);
-    return cached ? (0, _rxjs.of)(cached) : api.query.staking.erasStakersClipped.entries(era).pipe((0, _operators.map)(stakers => {
+    return cached ? (0, _rxjs.of)(cached) : api.query.staking.erasStakers.entries(era).pipe((0, _operators.map)(stakers => {
       const value = mapStakers(era, stakers);
       !withActive && _util.deriveCache.set(cacheKey, value);
       return value;
