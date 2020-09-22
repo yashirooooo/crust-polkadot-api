@@ -23,7 +23,7 @@ function _ownExposure(instanceId, api) {
   return (0, _util.memo)(instanceId, (accountId, era, withActive) => {
     const cacheKey = `${CACHE_KEY}-${era.toString()}-${accountId.toString()}`;
     const cached = withActive ? undefined : _util.deriveCache.get(cacheKey);
-    return cached ? (0, _rxjs.of)(cached) : api.queryMulti([[api.query.staking.erasStakersClipped, [era, accountId]], [api.query.staking.erasStakers, [era, accountId]]]).pipe((0, _operators.map)(([clipped, exposure]) => {
+    return cached ? (0, _rxjs.of)(cached) : api.queryMulti([[api.query.staking.erasStakers, [era, accountId]], [api.query.staking.erasStakers, [era, accountId]]]).pipe((0, _operators.map)(([clipped, exposure]) => {
       const value = {
         clipped,
         era,
